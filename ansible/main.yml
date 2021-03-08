@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: yes
+
+  roles:
+
+  - role: basic
+    tags: always
+
+  - role: hashicorp
+    tags: [never, nomad]
+
+  - role: docker
+    tags: [never, docker]
+        

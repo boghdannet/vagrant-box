@@ -1,0 +1,21 @@
+---
+
+- name: Install TMUX and VIM
+  apt:
+    pkg:
+      - tmux
+      - vim
+    state: present
+
+- name: Clone GIT linux_profile
+  git:
+    repo: https://github.com/boghdannet/linux-profile.git
+    dest: /tmp/linux-profile/
+
+- name: Copy profile files to the user home directory
+  synchronize:
+    src: /tmp/linux-profile/
+    dest: /home/vagrant/
+    rsync_opts:
+      - "--exclude=.git"
+  delegate_to: "{{ inventory_hostname }}"

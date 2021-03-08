@@ -1,0 +1,14 @@
+---
+
+- name: Copy /etc/nomad.d config
+  copy:
+    src: client.hcl
+    dest: /etc/nomad.d/
+    
+- name: Install Consul and Nomad
+  apt:
+    pkg:
+    - consul=1.7.2
+    - nomad=0.8.7+dfsg1-1ubuntu1
+    state: present
+    
